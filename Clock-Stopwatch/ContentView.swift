@@ -22,7 +22,29 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .offset(y: -50)
             HStack{
-                
+                Button(action: resetTimer) {
+                    ZStack{
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 100, height: 100)
+                            .cornerRadius(100)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 100)
+                                    .inset(by: 41)
+                                    .stroke(Color(red: 0.19, green: 0.19, blue: 0.19), lineWidth: 82)
+                            )
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 85, height: 85)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(100)
+                        
+                        Text("Reset")
+                            .font(Font.custom("Inter", size: 22))
+                            .foregroundColor(.white)
+                    }
+                }
+                Spacer()
             }
         }
     }

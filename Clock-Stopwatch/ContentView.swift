@@ -44,7 +44,62 @@ struct ContentView: View {
                             .foregroundColor(.white)
                     }
                 }
+                
                 Spacer()
+                
+                if isRunning {
+                    Button(action: stopTimer) {
+                        ZStack{
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(100)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .inset(by: 41)
+                                        .stroke(Color(red: 1, green: 0.27, blue: 0.24).opacity(0.27), lineWidth: 82)
+                                )
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 85, height: 85)
+                                .background(Color(red: 1, green: 0.27, blue: 0.24).opacity(0.27).opacity(0.27))
+                                .cornerRadius(100)
+                            
+                            Text("Stop")
+                                .font(Font.custom("Inter", size: 22))
+                                .foregroundColor(Color(red: 1, green: 0.27, blue: 0.24))
+                        }
+                    }
+                }else{
+                    Button(action: startTimer) {
+                        ZStack{
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(100)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 100)
+                                        .inset(by: 41)
+                                        .stroke(Color(red: 0.18, green: 0.82, blue: 0.35).opacity(0.27), lineWidth: 82)
+                                )
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 85, height: 85)
+                                .background(Color(red: 0.18, green: 0.82, blue: 0.35).opacity(0.17))
+                                .cornerRadius(100)
+                            
+                            Text("Start")
+                                .font(Font.custom("Inter", size: 22))
+                                .foregroundColor(Color(red: 0.18, green: 0.82, blue: 0.35))
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
+        .onReceive(timer) { _ in
+            if self.isRunning {
+                self.timerElapsed += 0.1
             }
         }
     }
